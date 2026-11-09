@@ -1,12 +1,11 @@
 package com.yunlv.playeresp.mixin;
 
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.yunlv.playeresp.feature.FeatureManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.renderer.MultiBufferSource;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.Entity;
@@ -33,7 +32,7 @@ public class EntityRendererMixin<T extends Entity> {
         double yOffset = entity.getBbHeight() + 0.5;
         matrices.pushPose();
         matrices.translate(0.0, yOffset, 0.0);
-        matrices.mulPose(mc.getEntityRenderDispatcher().cameraOrientation());
+        matrices.mulPose(mc.gameRenderer.getMainCamera().rotation());
         matrices.scale(-0.025F, -0.025F, 0.025F);
         Matrix4f matrix = matrices.last().pose();
 
@@ -41,14 +40,12 @@ public class EntityRendererMixin<T extends Entity> {
         float textWidth = font.width(name);
         float x = -textWidth / 2.0f;
 
-        VertexConsumer consumer = bufferSource.getBuffer(RenderType.textSeeThrough());
-
         font.drawInBatch(
             Component.literal(name),
             x, 0, 0xFFFFFFFF,
             false,
             matrix,
-            consumer,
+            bufferSource,
             Font.DisplayMode.SEE_THROUGH,
             0,
             light
