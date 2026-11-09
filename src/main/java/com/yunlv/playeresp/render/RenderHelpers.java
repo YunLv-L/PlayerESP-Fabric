@@ -18,7 +18,7 @@ public class RenderHelpers {
 
     public static Vec3 getCameraPos() {
         Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-        return camera.getPosition();
+        return camera.getPos();
     }
 
     public static int toIntColor(float[] rgb, float opacity) {
@@ -81,25 +81,25 @@ public class RenderHelpers {
         float x2 = (float) end.x, y2 = (float) end.y, z2 = (float) end.z;
         Vector3f normal = new Vector3f(x2, y2, z2).sub(x1, y1, z1).normalize();
 
-        buffer.addVertex(entry, x1, y1, z1).setColor(color).setNormal(entry, normal).lineWidth(2);
+        buffer.addVertex(entry, x1, y1, z1).setColor(color).setNormal(entry, normal).setLineWidth(2.0f);
 
         float t = new Vector3f(x1, y1, z1).negate().dot(normal);
         float length = new Vector3f(x2, y2, z2).sub(x1, y1, z1).length();
         if (t > 0 && t < length) {
             Vector3f closeToCam = new Vector3f(normal).mul(t).add(x1, y1, z1);
-            buffer.addVertex(entry, closeToCam).setColor(color).setNormal(entry, normal).lineWidth(2);
-            buffer.addVertex(entry, closeToCam).setColor(color).setNormal(entry, normal).lineWidth(2);
+            buffer.addVertex(entry, closeToCam).setColor(color).setNormal(entry, normal).setLineWidth(2.0f);
+            buffer.addVertex(entry, closeToCam).setColor(color).setNormal(entry, normal).setLineWidth(2.0f);
         }
 
-        buffer.addVertex(entry, x2, y2, z2).setColor(color).setNormal(entry, normal).lineWidth(2);
+        buffer.addVertex(entry, x2, y2, z2).setColor(color).setNormal(entry, normal).setLineWidth(2.0f);
     }
 
     private static void line(PoseStack.Pose entry, VertexConsumer buffer,
                              float x1, float y1, float z1, float x2, float y2, float z2,
                              int color, float nx, float ny, float nz) {
         Vector3f normal = new Vector3f(nx, ny, nz);
-        buffer.addVertex(entry, x1, y1, z1).setColor(color).setNormal(entry, normal).lineWidth(2);
-        buffer.addVertex(entry, x2, y2, z2).setColor(color).setNormal(entry, normal).lineWidth(2);
+        buffer.addVertex(entry, x1, y1, z1).setColor(color).setNormal(entry, normal).setLineWidth(2.0f);
+        buffer.addVertex(entry, x2, y2, z2).setColor(color).setNormal(entry, normal).setLineWidth(2.0f);
     }
 
     public record ColoredBox(AABB box, int color) {}
