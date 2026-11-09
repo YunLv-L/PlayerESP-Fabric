@@ -33,23 +33,36 @@ public class FakePlayerEntity extends RemotePlayer {
         this.spawnYHeadRot = mc.player.getYHeadRot();
         this.spawnYBodyRot = mc.player.yBodyRot;
 
+        // 位置 + 旧位置（关键：旧位置必须和当前位置一致）
         this.setPos(spawnPos.x, spawnPos.y, spawnPos.z);
-        applySpawnRotation();
+        this.xOld = spawnPos.x;
+        this.yOld = spawnPos.y;
+        this.zOld = spawnPos.z;
+
+        // 当前朝向
+        this.setYRot(spawnYRot);
+        this.setXRot(spawnXRot);
+        this.setYHeadRot(spawnYHeadRot);
+        this.yBodyRot = spawnYBodyRot;
+
+        // 旧朝向
+        this.yRotO = spawnYRot;
+        this.xRotO = spawnXRot;
+        this.yHeadRotO = spawnYHeadRot;
+        this.yBodyRotO = spawnYBodyRot;
+
         copyEquipment();
         mc.level.addFreshEntity(this);
     }
 
-    // 完全冻结：不调用 super.tick()，防止 AI/移动逻辑被执行
     @Override
     public void tick() {
-        this.setPos(spawnPos.x, spawnPos.y, spawnPos.z);
-        this.setDeltaMovement(Vec3.ZERO);
-        applySpawnRotation();
+        // 空实现：不执行任何原版 tick 逻辑
     }
 
     @Override
     public void aiStep() {
-        // 不做任何移动处理
+        // 空实现：不做移动/AI 处理
     }
 
     @Override
@@ -63,7 +76,6 @@ public class FakePlayerEntity extends RemotePlayer {
 
     @Override
     public void push(Entity entity) {
-        // 不推开真实玩家
     }
 
     private void copyEquipment() {
@@ -73,17 +85,6 @@ public class FakePlayerEntity extends RemotePlayer {
                 this.setItemSlot(slot, realPlayer.getItemBySlot(slot).copy());
             }
         }
-    }
-
-    private void applySpawnRotation() {
-        this.setYRot(spawnYRot);
-        this.setXRot(spawnXRot);
-        this.setYHeadRot(spawnYHeadRot);
-        this.yBodyRot = spawnYBodyRot;
-        this.yRotO = spawnYRot;
-        this.xRotO = spawnXRot;
-        this.yHeadRotO = spawnYHeadRot;
-        this.yBodyRotO = spawnYBodyRot;
     }
 
     public void despawn() {
