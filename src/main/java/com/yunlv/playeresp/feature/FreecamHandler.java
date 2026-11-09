@@ -17,9 +17,7 @@ public class FreecamHandler {
     private static final double horizontalSpeed = 1.0;
     private static final double verticalRatio = 0.5;
 
-    public static boolean isActive() {
-        return active;
-    }
+    public static boolean isActive() { return active; }
 
     public static void toggle(Minecraft mc) {
         if (mc.player == null || mc.level == null) return;
@@ -49,7 +47,6 @@ public class FreecamHandler {
 
         prevCamPos = camPos;
 
-        // 直接用 KeyMapping，绕开 ClientInput 的字段名变更
         boolean forward = mc.options.keyUp.isDown();
         boolean back    = mc.options.keyDown.isDown();
         boolean left    = mc.options.keyLeft.isDown();
@@ -57,15 +54,16 @@ public class FreecamHandler {
         boolean jump    = mc.options.keyJump.isDown();
         boolean sneak   = mc.options.keyShift.isDown();
 
-        double xxa = (left ? 1.0 : 0.0) - (right ? 1.0 : 0.0);
+        // xxa 取反：修正左右方向
+        double xxa = (right ? 1.0 : 0.0) - (left ? 1.0 : 0.0);
         double zza = (forward ? 1.0 : 0.0) - (back ? 1.0 : 0.0);
 
         double yawRad = Math.toRadians(camYaw);
         double sinYaw = Math.sin(yawRad);
         double cosYaw = Math.cos(yawRad);
 
-        double offsetX = zza * -sinYaw - xxa * cosYaw;
-        double offsetZ = zza * cosYaw - xxa * sinYaw;
+        double offsetX = xxa * cosYaw - zza * sinYaw;
+        double offsetZ = xxa * sinYaw + zza * cosYaw;
 
         double offsetY = 0;
         double vSpeed = horizontalSpeed * verticalRatio;
