@@ -51,7 +51,7 @@ public class PlayerEspMod implements ClientModInitializer {
 
         nameTagsKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.playeresp.nametags", InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_T, category));
+            GLFW.GLFW_KEY_Z, category));
 
         noFallKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.playeresp.nofall", InputConstants.Type.KEYSYM,
