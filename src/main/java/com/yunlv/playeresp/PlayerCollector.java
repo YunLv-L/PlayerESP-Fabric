@@ -1,6 +1,5 @@
 package com.yunlv.playeresp;
 
-import com.yunlv.playeresp.util.FakePlayerEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.world.entity.player.Player;
 import java.util.ArrayList;
@@ -15,7 +14,6 @@ public class PlayerCollector {
 
         for (Player player : client.level.players()) {
             if (player == client.player) continue;
-            if (player instanceof FakePlayerEntity) continue;
             if (PlayerEspMod.config.filterCreative && player.isCreative()) continue;
             if (PlayerEspMod.config.filterSleeping && player.isSleeping()) continue;
             if (PlayerEspMod.config.filterInvisible && player.isInvisible()) continue;
@@ -23,11 +21,6 @@ public class PlayerCollector {
         }
     }
 
-    public static void clear() {
-        players.clear();
-    }
-
-    public static List<Player> getPlayers() {
-        return players;
-    }
+    public static void clear() { players.clear(); }
+    public static List<Player> getPlayers() { return players; }
 }

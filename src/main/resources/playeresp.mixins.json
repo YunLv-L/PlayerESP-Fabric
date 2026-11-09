@@ -5,8 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "LevelRendererMixin",
-    "CameraMixin",
-    "MouseHandlerMixin"
+    "OptionInstanceMixin"
   ],
   "injectors": {
     "defaultRequire": 1

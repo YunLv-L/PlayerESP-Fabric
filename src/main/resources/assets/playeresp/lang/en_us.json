@@ -1,3 +1,5 @@
 {
-  "key.playeresp.toggle": "Toggle PlayerESP"
+  "key.playeresp.toggle": "Toggle PlayerESP",
+  "key.playeresp.nofall": "Toggle NoFall",
+  "key.playeresp.fullbright": "Toggle Fullbright"
 }
