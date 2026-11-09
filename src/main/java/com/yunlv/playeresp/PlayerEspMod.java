@@ -21,6 +21,7 @@ public class PlayerEspMod implements ClientModInitializer {
     public static KeyMapping chestEspKey;
     public static KeyMapping itemEspKey;
     public static KeyMapping mobEspKey;
+    public static KeyMapping nameTagsKey;
     public static KeyMapping noFallKey;
     public static KeyMapping fullbrightKey;
 
@@ -48,6 +49,10 @@ public class PlayerEspMod implements ClientModInitializer {
             "key.playeresp.mobesp", InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_M, category));
 
+        nameTagsKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.playeresp.nametags", InputConstants.Type.KEYSYM,
+            GLFW.GLFW_KEY_T, category));
+
         noFallKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.playeresp.nofall", InputConstants.Type.KEYSYM,
             GLFW.GLFW_KEY_N, category));
@@ -57,24 +62,13 @@ public class PlayerEspMod implements ClientModInitializer {
             GLFW.GLFW_KEY_B, category));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (toggleKey.consumeClick()) {
-                config.enabled = !config.enabled;
-            }
-            while (chestEspKey.consumeClick()) {
-                FeatureManager.chestEsp = !FeatureManager.chestEsp;
-            }
-            while (itemEspKey.consumeClick()) {
-                FeatureManager.itemEsp = !FeatureManager.itemEsp;
-            }
-            while (mobEspKey.consumeClick()) {
-                FeatureManager.mobEsp = !FeatureManager.mobEsp;
-            }
-            while (noFallKey.consumeClick()) {
-                FeatureManager.noFall = !FeatureManager.noFall;
-            }
-            while (fullbrightKey.consumeClick()) {
-                FeatureManager.fullbright = !FeatureManager.fullbright;
-            }
+            while (toggleKey.consumeClick()) config.enabled = !config.enabled;
+            while (chestEspKey.consumeClick()) FeatureManager.chestEsp = !FeatureManager.chestEsp;
+            while (itemEspKey.consumeClick()) FeatureManager.itemEsp = !FeatureManager.itemEsp;
+            while (mobEspKey.consumeClick()) FeatureManager.mobEsp = !FeatureManager.mobEsp;
+            while (nameTagsKey.consumeClick()) FeatureManager.nameTags = !FeatureManager.nameTags;
+            while (noFallKey.consumeClick()) FeatureManager.noFall = !FeatureManager.noFall;
+            while (fullbrightKey.consumeClick()) FeatureManager.fullbright = !FeatureManager.fullbright;
 
             FullbrightHandler.tick(client);
             NoFallHandler.tick(client);
@@ -82,11 +76,8 @@ public class PlayerEspMod implements ClientModInitializer {
             ItemCollector.update(client);
             MobCollector.update(client);
 
-            if (config.enabled) {
-                PlayerCollector.update(client);
-            } else {
-                PlayerCollector.clear();
-            }
+            if (config.enabled) PlayerCollector.update(client);
+            else PlayerCollector.clear();
         });
 
         RenderEventManager.register(new PlayerEspRenderer());

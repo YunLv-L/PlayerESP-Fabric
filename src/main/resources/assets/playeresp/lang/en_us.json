@@ -3,6 +3,7 @@
   "key.playeresp.chestesp": "Toggle ChestESP",
   "key.playeresp.itemesp": "Toggle ItemESP",
   "key.playeresp.mobesp": "Toggle MobESP",
+  "key.playeresp.nametags": "Toggle NameTags",
   "key.playeresp.nofall": "Toggle NoFall",
   "key.playeresp.fullbright": "Toggle Fullbright"
 }
