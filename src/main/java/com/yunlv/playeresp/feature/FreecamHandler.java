@@ -54,7 +54,7 @@ public class FreecamHandler {
         boolean jump    = mc.options.keyJump.isDown();
         boolean sneak   = mc.options.keyShift.isDown();
 
-        // xxa 取反：修正左右方向
+        // xxa 翻转符号：A 按下时 xxa = -1
         double xxa = (right ? 1.0 : 0.0) - (left ? 1.0 : 0.0);
         double zza = (forward ? 1.0 : 0.0) - (back ? 1.0 : 0.0);
 
