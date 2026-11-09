@@ -4,7 +4,6 @@ import com.yunlv.playeresp.util.FakePlayerEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.util.Mth;
 import net.minecraft.world.phys.Vec3;
-import org.lwjgl.glfw.GLFW;
 
 public class FreecamHandler {
 
@@ -50,8 +49,16 @@ public class FreecamHandler {
 
         prevCamPos = camPos;
 
-        double xxa = mc.player.input.xxa;
-        double zza = mc.player.input.zza;
+        // 直接用 KeyMapping，绕开 ClientInput 的字段名变更
+        boolean forward = mc.options.keyUp.isDown();
+        boolean back    = mc.options.keyDown.isDown();
+        boolean left    = mc.options.keyLeft.isDown();
+        boolean right   = mc.options.keyRight.isDown();
+        boolean jump    = mc.options.keyJump.isDown();
+        boolean sneak   = mc.options.keyShift.isDown();
+
+        double xxa = (left ? 1.0 : 0.0) - (right ? 1.0 : 0.0);
+        double zza = (forward ? 1.0 : 0.0) - (back ? 1.0 : 0.0);
 
         double yawRad = Math.toRadians(camYaw);
         double sinYaw = Math.sin(yawRad);
@@ -62,13 +69,8 @@ public class FreecamHandler {
 
         double offsetY = 0;
         double vSpeed = horizontalSpeed * verticalRatio;
-        long window = mc.getWindow().getWindow();
-        if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_SPACE) == GLFW.GLFW_PRESS) {
-            offsetY += vSpeed;
-        }
-        if (GLFW.glfwGetKey(window, GLFW.GLFW_KEY_LEFT_SHIFT) == GLFW.GLFW_PRESS) {
-            offsetY -= vSpeed;
-        }
+        if (jump)  offsetY += vSpeed;
+        if (sneak) offsetY -= vSpeed;
 
         camPos = camPos.add(offsetX * horizontalSpeed, offsetY, offsetZ * horizontalSpeed);
     }

@@ -4,6 +4,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.client.player.RemotePlayer;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.Nullable;
 
@@ -19,7 +20,7 @@ public class FakePlayerEntity extends RemotePlayer {
         this.realPlayer = mc.player;
         this.setUUID(UUID.randomUUID());
         this.copyPosition(mc.player);
-        this.getInventory().copyFrom(mc.player.getInventory());
+        copyEquipment();
         copyRotation();
         mc.level.addFreshEntity(this);
     }
@@ -34,8 +35,17 @@ public class FakePlayerEntity extends RemotePlayer {
     }
 
     @Override
-    protected void push(Entity entity) {
+    public void push(Entity entity) {
         // 不推开真实玩家
+    }
+
+    private void copyEquipment() {
+        for (EquipmentSlot slot : EquipmentSlot.values()) {
+            if (slot.getType() == EquipmentSlot.Type.HUMANOID_ARMOR
+                || slot.getType() == EquipmentSlot.Type.HAND) {
+                this.setItemSlot(slot, realPlayer.getItemBySlot(slot).copy());
+            }
+        }
     }
 
     private void copyRotation() {
@@ -43,10 +53,6 @@ public class FakePlayerEntity extends RemotePlayer {
         this.setXRot(realPlayer.getXRot());
         this.setYHeadRot(realPlayer.getYHeadRot());
         this.yBodyRot = realPlayer.yBodyRot;
-        this.yRotO = realPlayer.getYRot();
-        this.xRotO = realPlayer.getXRot();
-        this.yHeadRotO = realPlayer.getYHeadRot();
-        this.yBodyRotO = realPlayer.yBodyRot;
     }
 
     public void despawn() {
