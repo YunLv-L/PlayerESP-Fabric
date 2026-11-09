@@ -18,7 +18,7 @@ public class RenderHelpers {
 
     public static Vec3 getCameraPos() {
         Camera camera = Minecraft.getInstance().gameRenderer.getMainCamera();
-        return camera.getPos();
+        var pos = camera.position(); return new Vec3(pos.x, pos.y, pos.z);
     }
 
     public static int toIntColor(float[] rgb, float opacity) {
