@@ -1,6 +1,7 @@
 package com.yunlv.playeresp;
 
 import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.blaze3d.platform.Window;
 import com.yunlv.playeresp.event.RenderEventManager;
 import com.yunlv.playeresp.feature.*;
 import com.yunlv.playeresp.gui.PlayerEspScreen;
@@ -28,7 +29,7 @@ public class PlayerEspMod implements ClientModInitializer {
                 return;
             }
 
-            long window = client.getWindow().getWindow();
+            Window window = client.getWindow();
 
             boolean menuDown = InputConstants.isKeyDown(window, config.keyMenu);
             if (menuDown && !menuWasDown) client.setScreen(new PlayerEspScreen());

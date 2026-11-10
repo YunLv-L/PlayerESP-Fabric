@@ -8,6 +8,7 @@ import com.yunlv.playeresp.feature.TrollPotionHandler;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.input.KeyEvent;
 import net.minecraft.network.chat.Component;
 import org.lwjgl.glfw.GLFW;
 
@@ -91,7 +92,10 @@ public class PlayerEspScreen extends Screen {
     }
 
     private void addKeybindButton(int x, int y, String transKey, String configField, int currentKey) {
-        String keyName = listeningForKey != null && listeningForKey.equals(configField) ? "> " + Component.translatable("gui.playeresp.listening").getString() + " <" : InputConstants.getKey(currentKey, 0).getDisplayName().getString();
+        String keyName = listeningForKey != null && listeningForKey.equals(configField) 
+            ? "> " + Component.translatable("gui.playeresp.listening").getString() + " <" 
+            : InputConstants.Type.KEYSYM.getOrCreate(currentKey).getDisplayName().getString();
+        
         addRenderableWidget(Button.builder(Component.translatable(transKey).append(": §e" + keyName), b -> {
             listeningForKey = configField;
             rebuildWidgets();
@@ -99,8 +103,9 @@ public class PlayerEspScreen extends Screen {
     }
 
     @Override
-    public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
+    public boolean keyPressed(KeyEvent event) {
         if (listeningForKey != null) {
+            int keyCode = event.key();
             if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
                 listeningForKey = null;
                 rebuildWidgets();
@@ -119,7 +124,7 @@ public class PlayerEspScreen extends Screen {
             rebuildWidgets();
             return true;
         }
-        return super.keyPressed(keyCode, scanCode, modifiers);
+        return super.keyPressed(event);
     }
 
     private void switchCategory(int newCategory) {
