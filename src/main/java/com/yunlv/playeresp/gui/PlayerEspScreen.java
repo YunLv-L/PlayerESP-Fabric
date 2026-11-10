@@ -60,9 +60,19 @@ public class PlayerEspScreen extends Screen {
     }
 
     @Override
+    public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
+        // 留空以阻断 1.21.11 的多次模糊冲突
+    }
+
+    @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        this.renderBackground(guiGraphics, mouseX, mouseY, partialTick);
+        // 自己画一个半透明黑色遮罩
+        guiGraphics.fill(0, 0, this.width, this.height, 0x80000000);
+        
+        // 绘制标题
         guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 20, 0xFFFFFF);
+        
+        // 渲染按钮
         super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 }
