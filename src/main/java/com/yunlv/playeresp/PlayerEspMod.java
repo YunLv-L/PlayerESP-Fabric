@@ -6,12 +6,10 @@ import com.yunlv.playeresp.feature.*;
 import com.yunlv.playeresp.gui.PlayerEspScreen;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import org.lwjgl.glfw.GLFW;
 
 public class PlayerEspMod implements ClientModInitializer {
     public static PlayerEspConfig config;
     
-    // 记录按键状态，用于防连发
     private static boolean menuWasDown = false;
     private static boolean chestWasDown = false;
     private static boolean itemWasDown = false;
@@ -25,7 +23,6 @@ public class PlayerEspMod implements ClientModInitializer {
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (client.player == null || client.screen != null) {
-                // 在菜单中时，将按键状态重置，避免关闭菜单后触发
                 menuWasDown = false; chestWasDown = false; itemWasDown = false;
                 mobWasDown = false; noFallWasDown = false; brightWasDown = false;
                 return;
@@ -33,7 +30,6 @@ public class PlayerEspMod implements ClientModInitializer {
 
             long window = client.getWindow().getWindow();
 
-            // 辅助防连发逻辑
             boolean menuDown = InputConstants.isKeyDown(window, config.keyMenu);
             if (menuDown && !menuWasDown) client.setScreen(new PlayerEspScreen());
             menuWasDown = menuDown;
@@ -58,7 +54,6 @@ public class PlayerEspMod implements ClientModInitializer {
             if (brightDown && !brightWasDown) { config.fullbright = !config.fullbright; ConfigManager.save(config); }
             brightWasDown = brightDown;
 
-            // 执行渲染 Tick
             FullbrightHandler.tick(client);
             NoFallHandler.tick(client);
             ChestCollector.tick(client);

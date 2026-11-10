@@ -1,5 +1,6 @@
 package com.yunlv.playeresp.gui;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import com.yunlv.playeresp.ConfigManager;
 import com.yunlv.playeresp.PlayerEspMod;
 import com.yunlv.playeresp.feature.KillPotionHandler;
@@ -23,7 +24,6 @@ public class PlayerEspScreen extends Screen {
     protected void init() {
         super.init();
         
-        // 顶部：4个分类 Tab
         int tabY = 30;
         int tabWidth = 75;
         int tabSpacing = 5;
@@ -38,7 +38,6 @@ public class PlayerEspScreen extends Screen {
         int step = 25;
         int x = this.width / 2 - 100;
 
-        // Tab 内容
         if (currentCategory == 0) {
             addToggle(x, startY, "feature.playeresp", () -> PlayerEspMod.config.enabled, v -> PlayerEspMod.config.enabled = v);
             addToggle(x, startY + step, "feature.chestesp", () -> PlayerEspMod.config.chestEsp, v -> PlayerEspMod.config.chestEsp = v);
@@ -102,14 +101,12 @@ public class PlayerEspScreen extends Screen {
     @Override
     public boolean keyPressed(int keyCode, int scanCode, int modifiers) {
         if (listeningForKey != null) {
-            // ESC 键取消绑定
             if (keyCode == GLFW.GLFW_KEY_ESCAPE) {
                 listeningForKey = null;
                 rebuildWidgets();
                 return true;
             }
             
-            // 保存新按键
             if (listeningForKey.equals("keyMenu")) PlayerEspMod.config.keyMenu = keyCode;
             else if (listeningForKey.equals("keyChestEsp")) PlayerEspMod.config.keyChestEsp = keyCode;
             else if (listeningForKey.equals("keyItemEsp")) PlayerEspMod.config.keyItemEsp = keyCode;
