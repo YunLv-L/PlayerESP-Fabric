@@ -1,0 +1,13 @@
+{
+  "key.playeresp.menu": "開啟 PlayerESP 選單",
+  "gui.playeresp.title": "PlayerESP 設定",
+  "gui.playeresp.on": "開啟",
+  "gui.playeresp.off": "關閉",
+  "gui.done": "完成",
+  "feature.playeresp": "玩家透視 (PlayerESP)",
+  "feature.chestesp": "箱子透視 (ChestESP)",
+  "feature.itemesp": "掉落物透視 (ItemESP)",
+  "feature.mobesp": "生物透視 (MobESP)",
+  "feature.nofall": "無摔落傷害 (NoFall)",
+  "feature.fullbright": "全亮 (Fullbright)"
+}

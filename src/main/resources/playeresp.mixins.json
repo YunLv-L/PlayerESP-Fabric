@@ -5,8 +5,7 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "LevelRendererMixin",
-    "OptionInstanceMixin",
-    "EntityRendererMixin"
+    "OptionInstanceMixin"
   ],
   "injectors": {
     "defaultRequire": 1
