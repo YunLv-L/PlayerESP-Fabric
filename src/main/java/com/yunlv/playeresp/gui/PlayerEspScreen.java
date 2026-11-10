@@ -109,7 +109,7 @@ public class PlayerEspScreen extends Screen {
 
     private void switchCategory(int newCategory) {
         this.currentCategory = newCategory;
-        this.rebuildWidgets(); // 清空当前按钮并重新触发 init()
+        this.rebuildWidgets();
     }
 
     private void save() {

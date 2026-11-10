@@ -1,7 +1,17 @@
 package com.yunlv.playeresp;
 
 public class PlayerEspConfig {
+    // 透视功能开关
     public boolean enabled = true;
+    public boolean chestEsp = false;
+    public boolean itemEsp = false;
+    public boolean mobEsp = false;
+    
+    // 实用功能开关
+    public boolean noFall = false;
+    public boolean fullbright = false;
+    
+    // 过滤配置
     public int style = 2;
     public int boxSizeMode = 1;
     public boolean filterCreative = true;
@@ -12,7 +22,7 @@ public class PlayerEspConfig {
     public int killPotionType = 0;
     public int trollPotionType = 0;
 
-    // 自定义按键绑定（-1 表示未设置）
+    // 自定义按键绑定（默认键位）
     public int keyMenu = 82;       // R
     public int keyChestEsp = 67;   // C
     public int keyItemEsp = 73;    // I
