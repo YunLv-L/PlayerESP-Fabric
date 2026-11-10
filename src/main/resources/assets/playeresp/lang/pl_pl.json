@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "Otwórz menu PlayerESP",
+  "key.playeresp.killpotion": "Wygeneruj miksturę śmierci",
+  "key.playeresp.trollpotion": "Wygeneruj miksturę trolla",
+  "gui.playeresp.title": "Ustawienia PlayerESP",
+  "gui.playeresp.on": "WŁ",
+  "gui.playeresp.off": "WYŁ",
+  "gui.done": "Gotowe",
+  "gui.playeresp.createkill": "Utwórz miksturę śmierci (Kill Potion)",
+  "gui.playeresp.createtroll": "Utwórz miksturę trolla (Troll Potion)",
+  "feature.playeresp": "ESP graczy",
+  "feature.chestesp": "ESP skrzyń",
+  "feature.itemesp": "ESP przedmiotów",
+  "feature.mobesp": "ESP mobów",
+  "feature.nofall": "Brak obrażeń od upadku",
+  "feature.fullbright": "Pełna jasność"
+}

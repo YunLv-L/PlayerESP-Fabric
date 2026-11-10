@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "PlayerESP-Menü öffnen",
+  "key.playeresp.killpotion": "Tötungstrank generieren",
+  "key.playeresp.trollpotion": "Trolltrank generieren",
+  "gui.playeresp.title": "PlayerESP Einstellungen",
+  "gui.playeresp.on": "AN",
+  "gui.playeresp.off": "AUS",
+  "gui.done": "Fertig",
+  "gui.playeresp.createkill": "Tötungstrank (Kill Potion) erstellen",
+  "gui.playeresp.createtroll": "Trolltrank (Troll Potion) erstellen",
+  "feature.playeresp": "Spieler-ESP",
+  "feature.chestesp": "Truhen-ESP",
+  "feature.itemesp": "Item-ESP",
+  "feature.mobesp": "Mob-ESP",
+  "feature.nofall": "Kein Fallschaden",
+  "feature.fullbright": "Volle Helligkeit"
+}

@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "Открыть меню PlayerESP",
+  "key.playeresp.killpotion": "Создать зелье убийства",
+  "key.playeresp.trollpotion": "Создать зелье троллинга",
+  "gui.playeresp.title": "Настройки PlayerESP",
+  "gui.playeresp.on": "ВКЛ",
+  "gui.playeresp.off": "ВЫКЛ",
+  "gui.done": "Готово",
+  "gui.playeresp.createkill": "Создать зелье убийства (Kill Potion)",
+  "gui.playeresp.createtroll": "Создать зелье троллинга (Troll Potion)",
+  "feature.playeresp": "ESP игроков",
+  "feature.chestesp": "ESP сундуков",
+  "feature.itemesp": "ESP предметов",
+  "feature.mobesp": "ESP мобов",
+  "feature.nofall": "Без урона от падения",
+  "feature.fullbright": "Полная яркость"
+}

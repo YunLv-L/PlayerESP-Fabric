@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "Abrir menu do PlayerESP",
+  "key.playeresp.killpotion": "Gerar poção da morte",
+  "key.playeresp.trollpotion": "Gerar poção de trollagem",
+  "gui.playeresp.title": "Configurações do PlayerESP",
+  "gui.playeresp.on": "LIGADO",
+  "gui.playeresp.off": "DESLIGADO",
+  "gui.done": "Concluído",
+  "gui.playeresp.createkill": "Criar poção da morte (Kill Potion)",
+  "gui.playeresp.createtroll": "Criar poção de trollagem (Troll Potion)",
+  "feature.playeresp": "ESP de jogadores",
+  "feature.chestesp": "ESP de baús",
+  "feature.itemesp": "ESP de itens",
+  "feature.mobesp": "ESP de criaturas",
+  "feature.nofall": "Sem dano de queda",
+  "feature.fullbright": "Brilho total"
+}

@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "PlayerESP メニューを開く",
+  "key.playeresp.killpotion": "殺戮ポーションを生成",
+  "key.playeresp.trollpotion": "トロールポーションを生成",
+  "gui.playeresp.title": "PlayerESP 設定",
+  "gui.playeresp.on": "ON",
+  "gui.playeresp.off": "OFF",
+  "gui.done": "完了",
+  "gui.playeresp.createkill": "殺戮ポーション (Kill Potion) を生成",
+  "gui.playeresp.createtroll": "トロールポーション (Troll Potion) を生成",
+  "feature.playeresp": "プレイヤーESP",
+  "feature.chestesp": "チェストESP",
+  "feature.itemesp": "アイテムESP",
+  "feature.mobesp": "モブESP",
+  "feature.nofall": "落下ダメージ無効",
+  "feature.fullbright": "全明るさ"
+}

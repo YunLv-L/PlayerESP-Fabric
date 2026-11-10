@@ -1,9 +1,13 @@
 {
   "key.playeresp.menu": "開啟 PlayerESP 選單",
+  "key.playeresp.killpotion": "生成秒殺藥水",
+  "key.playeresp.trollpotion": "生成惡作劇藥水",
   "gui.playeresp.title": "PlayerESP 設定",
   "gui.playeresp.on": "開啟",
   "gui.playeresp.off": "關閉",
   "gui.done": "完成",
+  "gui.playeresp.createkill": "生成秒殺藥水 (Kill Potion)",
+  "gui.playeresp.createtroll": "生成惡作劇藥水 (Troll Potion)",
   "feature.playeresp": "玩家透視 (PlayerESP)",
   "feature.chestesp": "箱子透視 (ChestESP)",
   "feature.itemesp": "掉落物透視 (ItemESP)",

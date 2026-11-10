@@ -6,4 +6,6 @@ public class FeatureManager {
     public static boolean mobEsp = false;
     public static boolean noFall = false;
     public static boolean fullbright = false;
+    public static boolean killPotion = false;
+    public static boolean trollPotion = false;
 }

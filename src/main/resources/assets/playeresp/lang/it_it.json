@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "Apri menu PlayerESP",
+  "key.playeresp.killpotion": "Genera pozione letale",
+  "key.playeresp.trollpotion": "Genera pozione troll",
+  "gui.playeresp.title": "Impostazioni PlayerESP",
+  "gui.playeresp.on": "ON",
+  "gui.playeresp.off": "OFF",
+  "gui.done": "Fatto",
+  "gui.playeresp.createkill": "Crea pozione letale (Kill Potion)",
+  "gui.playeresp.createtroll": "Crea pozione troll (Troll Potion)",
+  "feature.playeresp": "ESP Giocatore",
+  "feature.chestesp": "ESP Casse",
+  "feature.itemesp": "ESP Oggetti",
+  "feature.mobesp": "ESP Creature",
+  "feature.nofall": "Nessun danno da caduta",
+  "feature.fullbright": "Luminosità massima"
+}

@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "PlayerESP 메뉴 열기",
+  "key.playeresp.killpotion": "킬 포션 생성",
+  "key.playeresp.trollpotion": "트롤 포션 생성",
+  "gui.playeresp.title": "PlayerESP 설정",
+  "gui.playeresp.on": "켜짐",
+  "gui.playeresp.off": "꺼짐",
+  "gui.done": "완료",
+  "gui.playeresp.createkill": "킬 포션 (Kill Potion) 생성",
+  "gui.playeresp.createtroll": "트롤 포션 (Troll Potion) 생성",
+  "feature.playeresp": "플레이어 ESP",
+  "feature.chestesp": "상자 ESP",
+  "feature.itemesp": "아이템 ESP",
+  "feature.mobesp": "몹 ESP",
+  "feature.nofall": "낙하 데미지 무효",
+  "feature.fullbright": "전체 밝기"
+}

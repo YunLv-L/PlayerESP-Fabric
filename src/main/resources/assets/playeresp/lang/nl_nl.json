@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "PlayerESP-menu openen",
+  "key.playeresp.killpotion": "Doodspotion genereren",
+  "key.playeresp.trollpotion": "Trollpotion genereren",
+  "gui.playeresp.title": "PlayerESP Instellingen",
+  "gui.playeresp.on": "AAN",
+  "gui.playeresp.off": "UIT",
+  "gui.done": "Klaar",
+  "gui.playeresp.createkill": "Doodspotion (Kill Potion) maken",
+  "gui.playeresp.createtroll": "Trollpotion (Troll Potion) maken",
+  "feature.playeresp": "Speler-ESP",
+  "feature.chestesp": "Kist-ESP",
+  "feature.itemesp": "Item-ESP",
+  "feature.mobesp": "Mob-ESP",
+  "feature.nofall": "Geen valschade",
+  "feature.fullbright": "Volle helderheid"
+}

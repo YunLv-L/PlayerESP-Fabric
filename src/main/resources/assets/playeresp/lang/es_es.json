@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "Abrir menú de PlayerESP",
+  "key.playeresp.killpotion": "Generar poción de muerte",
+  "key.playeresp.trollpotion": "Generar poción de troleo",
+  "gui.playeresp.title": "Ajustes de PlayerESP",
+  "gui.playeresp.on": "SÍ",
+  "gui.playeresp.off": "NO",
+  "gui.done": "Hecho",
+  "gui.playeresp.createkill": "Crear poción de muerte (Kill Potion)",
+  "gui.playeresp.createtroll": "Crear poción de troleo (Troll Potion)",
+  "feature.playeresp": "ESP de jugadores",
+  "feature.chestesp": "ESP de cofres",
+  "feature.itemesp": "ESP de objetos",
+  "feature.mobesp": "ESP de criaturas",
+  "feature.nofall": "Sin daño por caída",
+  "feature.fullbright": "Brillo total"
+}

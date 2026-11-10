@@ -2,6 +2,8 @@ package com.yunlv.playeresp.gui;
 
 import com.yunlv.playeresp.PlayerEspMod;
 import com.yunlv.playeresp.feature.FeatureManager;
+import com.yunlv.playeresp.feature.KillPotionHandler;
+import com.yunlv.playeresp.feature.TrollPotionHandler;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.screens.Screen;
@@ -16,7 +18,7 @@ public class PlayerEspScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        int startY = this.height / 2 - 60;
+        int startY = this.height / 2 - 85;
         int step = 25;
         int x = this.width / 2 - 100;
 
@@ -50,8 +52,16 @@ public class PlayerEspScreen extends Screen {
             b.setMessage(getText("feature.fullbright", FeatureManager.fullbright));
         }).bounds(x, startY + step * 5, 200, 20).build());
 
+        addRenderableWidget(Button.builder(Component.translatable("gui.playeresp.createkill"), b -> {
+            KillPotionHandler.create(this.minecraft);
+        }).bounds(x, startY + step * 6, 200, 20).build());
+
+        addRenderableWidget(Button.builder(Component.translatable("gui.playeresp.createtroll"), b -> {
+            TrollPotionHandler.create(this.minecraft);
+        }).bounds(x, startY + step * 7, 200, 20).build());
+
         addRenderableWidget(Button.builder(Component.translatable("gui.done"), b -> this.onClose())
-            .bounds(x, startY + step * 6 + 10, 200, 20).build());
+            .bounds(x, startY + step * 8 + 10, 200, 20).build());
     }
 
     private Component getText(String key, boolean state) {
@@ -60,19 +70,12 @@ public class PlayerEspScreen extends Screen {
     }
 
     @Override
-    public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        // 留空以阻断 1.21.11 的多次模糊冲突
-    }
+    public void renderBackground(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {}
 
     @Override
     public void render(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick) {
-        // 自己画一个半透明黑色遮罩
         guiGraphics.fill(0, 0, this.width, this.height, 0x80000000);
-        
-        // 绘制标题
         guiGraphics.drawCenteredString(this.font, this.title, this.width / 2, 20, 0xFFFFFF);
-        
-        // 渲染按钮
         super.render(guiGraphics, mouseX, mouseY, partialTick);
     }
 }

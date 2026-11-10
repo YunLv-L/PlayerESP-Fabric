@@ -1,0 +1,17 @@
+{
+  "key.playeresp.menu": "PlayerESP Menüsünü Aç",
+  "key.playeresp.killpotion": "Ölüm İksiri Oluştur",
+  "key.playeresp.trollpotion": "Troll İksiri Oluştur",
+  "gui.playeresp.title": "PlayerESP Ayarları",
+  "gui.playeresp.on": "AÇIK",
+  "gui.playeresp.off": "KAPALI",
+  "gui.done": "Tamam",
+  "gui.playeresp.createkill": "Ölüm İksiri (Kill Potion) Oluştur",
+  "gui.playeresp.createtroll": "Troll İksiri (Troll Potion) Oluştur",
+  "feature.playeresp": "Oyuncu ESP",
+  "feature.chestesp": "Sandık ESP",
+  "feature.itemesp": "Eşya ESP",
+  "feature.mobesp": "Yaratık ESP",
+  "feature.nofall": "Düşme Hasarı Yok",
+  "feature.fullbright": "Tam Parlaklık"
+}
