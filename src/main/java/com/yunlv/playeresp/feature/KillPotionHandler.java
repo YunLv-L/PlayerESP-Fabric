@@ -13,13 +13,13 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import java.util.List;
 
 public class KillPotionHandler {
-    public static void create(Minecraft mc) {
+    public static void create(Minecraft mc, boolean lingering) {
         if (mc.player == null || !mc.player.isCreative()) return;
 
-        ItemStack stack = new ItemStack(Items.SPLASH_POTION);
+        ItemStack stack = new ItemStack(lingering ? Items.LINGERING_POTION : Items.SPLASH_POTION);
 
         // 120 级瞬间治疗会导致治疗量溢出为负数，从而秒杀任何玩家
-        MobEffectInstance instantHealth = new MobEffectInstance(MobEffects.HEAL, 1, 120);
+        MobEffectInstance instantHealth = new MobEffectInstance(MobEffects.INSTANT_HEALTH, 1, 120);
 
         PotionContents contents = new PotionContents(
             java.util.Optional.empty(),
@@ -29,7 +29,9 @@ public class KillPotionHandler {
         );
 
         stack.set(DataComponents.POTION_CONTENTS, contents);
-        stack.set(DataComponents.CUSTOM_NAME, Component.literal("§fSplash Potion of §4§lINSTANT DEATH"));
+        stack.set(DataComponents.CUSTOM_NAME, Component.literal(
+            "§f" + (lingering ? "Lingering" : "Splash") + " Potion of §4§lINSTANT DEATH"
+        ));
 
         placeStackInHotbar(mc, stack);
     }

@@ -1,5 +1,6 @@
 package com.yunlv.playeresp.gui;
 
+import com.yunlv.playeresp.ConfigManager;
 import com.yunlv.playeresp.PlayerEspMod;
 import com.yunlv.playeresp.feature.FeatureManager;
 import com.yunlv.playeresp.feature.KillPotionHandler;
@@ -18,13 +19,14 @@ public class PlayerEspScreen extends Screen {
     @Override
     protected void init() {
         super.init();
-        int startY = this.height / 2 - 85;
+        int startY = this.height / 2 - 110;
         int step = 25;
         int x = this.width / 2 - 100;
 
         addRenderableWidget(Button.builder(getText("feature.playeresp", PlayerEspMod.config.enabled), b -> {
             PlayerEspMod.config.enabled = !PlayerEspMod.config.enabled;
             b.setMessage(getText("feature.playeresp", PlayerEspMod.config.enabled));
+            ConfigManager.save(PlayerEspMod.config);
         }).bounds(x, startY, 200, 20).build());
 
         addRenderableWidget(Button.builder(getText("feature.chestesp", FeatureManager.chestEsp), b -> {
@@ -52,21 +54,39 @@ public class PlayerEspScreen extends Screen {
             b.setMessage(getText("feature.fullbright", FeatureManager.fullbright));
         }).bounds(x, startY + step * 5, 200, 20).build());
 
-        addRenderableWidget(Button.builder(Component.translatable("gui.playeresp.createkill"), b -> {
-            KillPotionHandler.create(this.minecraft);
+        // 药水类型切换 + 生成按钮
+        addRenderableWidget(Button.builder(getPotionTypeText("gui.playeresp.killtype", PlayerEspMod.config.killPotionType), b -> {
+            PlayerEspMod.config.killPotionType = (PlayerEspMod.config.killPotionType + 1) % 2;
+            b.setMessage(getPotionTypeText("gui.playeresp.killtype", PlayerEspMod.config.killPotionType));
+            ConfigManager.save(PlayerEspMod.config);
         }).bounds(x, startY + step * 6, 200, 20).build());
 
-        addRenderableWidget(Button.builder(Component.translatable("gui.playeresp.createtroll"), b -> {
-            TrollPotionHandler.create(this.minecraft);
+        addRenderableWidget(Button.builder(Component.translatable("gui.playeresp.createkill"), b -> {
+            KillPotionHandler.create(this.minecraft, PlayerEspMod.config.killPotionType == 1);
         }).bounds(x, startY + step * 7, 200, 20).build());
 
+        addRenderableWidget(Button.builder(getPotionTypeText("gui.playeresp.trolltype", PlayerEspMod.config.trollPotionType), b -> {
+            PlayerEspMod.config.trollPotionType = (PlayerEspMod.config.trollPotionType + 1) % 2;
+            b.setMessage(getPotionTypeText("gui.playeresp.trolltype", PlayerEspMod.config.trollPotionType));
+            ConfigManager.save(PlayerEspMod.config);
+        }).bounds(x, startY + step * 8, 200, 20).build());
+
+        addRenderableWidget(Button.builder(Component.translatable("gui.playeresp.createtroll"), b -> {
+            TrollPotionHandler.create(this.minecraft, PlayerEspMod.config.trollPotionType == 1);
+        }).bounds(x, startY + step * 9, 200, 20).build());
+
         addRenderableWidget(Button.builder(Component.translatable("gui.done"), b -> this.onClose())
-            .bounds(x, startY + step * 8 + 10, 200, 20).build());
+            .bounds(x, startY + step * 10 + 10, 200, 20).build());
     }
 
     private Component getText(String key, boolean state) {
         String status = state ? "gui.playeresp.on" : "gui.playeresp.off";
         return Component.translatable(key).append(": ").append(Component.translatable(status));
+    }
+
+    private Component getPotionTypeText(String key, int type) {
+        String typeKey = type == 1 ? "gui.playeresp.lingering" : "gui.playeresp.splash";
+        return Component.translatable(key).append(": ").append(Component.translatable(typeKey));
     }
 
     @Override

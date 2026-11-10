@@ -14,26 +14,26 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class TrollPotionHandler {
-    public static void create(Minecraft mc) {
+    public static void create(Minecraft mc, boolean lingering) {
         if (mc.player == null || !mc.player.isCreative()) return;
 
-        ItemStack stack = new ItemStack(Items.SPLASH_POTION);
+        ItemStack stack = new ItemStack(lingering ? Items.LINGERING_POTION : Items.SPLASH_POTION);
         List<MobEffectInstance> effects = new ArrayList<>();
 
-        // === 变态正面效果（血量上限提高等） ===
-        effects.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000, 255)); // 255级生命提升，血量上限突破天际
-        effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 6000, 255)); // 255级伤害吸收，金心拉满
-        effects.add(new MobEffectInstance(MobEffects.RESISTANCE, 6000, 4)); // 5级抗性提升（最高级）
-        
-        // === 全套负面折磨 ===
-        effects.add(new MobEffectInstance(MobEffects.BLINDNESS, 6000, 255)); // 失明
-        effects.add(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 6000, 255)); // 极度缓慢
-        effects.add(new MobEffectInstance(MobEffects.CONFUSION, 6000, 255)); // 极度反胃（屏幕疯狂扭曲）
-        effects.add(new MobEffectInstance(MobEffects.POISON, 6000, 10)); // 中毒10级（持续扣血，但不致死）
-        effects.add(new MobEffectInstance(MobEffects.WITHER, 6000, 10)); // 凋零10级（扣血到半颗心）
-        effects.add(new MobEffectInstance(MobEffects.WEAKNESS, 6000, 255)); // 虚弱
-        effects.add(new MobEffectInstance(MobEffects.LEVITATION, 6000, 5)); // 漂浮（让人一直往天上飞）
-        effects.add(new MobEffectInstance(MobEffects.UNLUCK, 6000, 255)); // 霉运
+        // 变态正面效果
+        effects.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000, 255));
+        effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 6000, 255));
+        effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 4));
+
+        // 全套负面折磨
+        effects.add(new MobEffectInstance(MobEffects.BLINDNESS, 6000, 255));
+        effects.add(new MobEffectInstance(MobEffects.SLOWNESS, 6000, 255));
+        effects.add(new MobEffectInstance(MobEffects.NAUSEA, 6000, 255));
+        effects.add(new MobEffectInstance(MobEffects.POISON, 6000, 10));
+        effects.add(new MobEffectInstance(MobEffects.WITHER, 6000, 10));
+        effects.add(new MobEffectInstance(MobEffects.WEAKNESS, 6000, 255));
+        effects.add(new MobEffectInstance(MobEffects.LEVITATION, 6000, 5));
+        effects.add(new MobEffectInstance(MobEffects.UNLUCK, 6000, 255));
 
         PotionContents contents = new PotionContents(
             java.util.Optional.empty(),
@@ -43,7 +43,9 @@ public class TrollPotionHandler {
         );
 
         stack.set(DataComponents.POTION_CONTENTS, contents);
-        stack.set(DataComponents.CUSTOM_NAME, Component.literal("§fSplash Potion of §5§lTROLLING"));
+        stack.set(DataComponents.CUSTOM_NAME, Component.literal(
+            "§f" + (lingering ? "Lingering" : "Splash") + " Potion of §5§lTROLLING"
+        ));
 
         placeStackInHotbar(mc, stack);
     }

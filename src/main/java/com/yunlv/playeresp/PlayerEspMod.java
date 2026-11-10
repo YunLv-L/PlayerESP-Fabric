@@ -13,41 +13,60 @@ import org.lwjgl.glfw.GLFW;
 
 public class PlayerEspMod implements ClientModInitializer {
     public static PlayerEspConfig config;
-    public static KeyMapping toggleKey;
-    public static KeyMapping killPotionKey;
-    public static KeyMapping trollPotionKey;
+    public static KeyMapping menuKey, chestEspKey, itemEspKey, mobEspKey, noFallKey, fullbrightKey;
 
     @Override
     public void onInitializeClient() {
-        config = new PlayerEspConfig();
+        config = ConfigManager.load();
 
         KeyMapping.Category category = KeyMapping.Category.register(
             Identifier.parse("playeresp:main")
         );
 
-        toggleKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+        menuKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
             "key.playeresp.menu", InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_R, category));
+            config.keyMenu, category));
 
-        killPotionKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-            "key.playeresp.killpotion", InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_K, category));
+        chestEspKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.playeresp.chestesp", InputConstants.Type.KEYSYM,
+            config.keyChestEsp, category));
 
-        trollPotionKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
-            "key.playeresp.trollpotion", InputConstants.Type.KEYSYM,
-            GLFW.GLFW_KEY_U, category));
+        itemEspKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.playeresp.itemesp", InputConstants.Type.KEYSYM,
+            config.keyItemEsp, category));
+
+        mobEspKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.playeresp.mobesp", InputConstants.Type.KEYSYM,
+            config.keyMobEsp, category));
+
+        noFallKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.playeresp.nofall", InputConstants.Type.KEYSYM,
+            config.keyNoFall, category));
+
+        fullbrightKey = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            "key.playeresp.fullbright", InputConstants.Type.KEYSYM,
+            config.keyFullbright, category));
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            while (toggleKey.consumeClick()) {
+            while (menuKey.consumeClick()) {
                 if (client.screen == null) {
                     client.setScreen(new PlayerEspScreen());
                 }
             }
-            while (killPotionKey.consumeClick()) {
-                KillPotionHandler.create(client);
+            while (chestEspKey.consumeClick()) {
+                FeatureManager.chestEsp = !FeatureManager.chestEsp;
             }
-            while (trollPotionKey.consumeClick()) {
-                TrollPotionHandler.create(client);
+            while (itemEspKey.consumeClick()) {
+                FeatureManager.itemEsp = !FeatureManager.itemEsp;
+            }
+            while (mobEspKey.consumeClick()) {
+                FeatureManager.mobEsp = !FeatureManager.mobEsp;
+            }
+            while (noFallKey.consumeClick()) {
+                FeatureManager.noFall = !FeatureManager.noFall;
+            }
+            while (fullbrightKey.consumeClick()) {
+                FeatureManager.fullbright = !FeatureManager.fullbright;
             }
 
             FullbrightHandler.tick(client);
