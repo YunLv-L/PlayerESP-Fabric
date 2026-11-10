@@ -23,7 +23,7 @@ public class TrollPotionHandler {
         // 变态正面效果
         effects.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000, 255));
         effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 6000, 255));
-        effects.add(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 6000, 4));
+        effects.add(new MobEffectInstance(MobEffects.RESISTANCE, 6000, 4));
 
         // 全套负面折磨
         effects.add(new MobEffectInstance(MobEffects.BLINDNESS, 6000, 255));
