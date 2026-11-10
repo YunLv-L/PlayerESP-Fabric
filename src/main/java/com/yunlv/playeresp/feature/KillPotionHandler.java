@@ -18,13 +18,13 @@ public class KillPotionHandler {
 
         ItemStack stack = new ItemStack(lingering ? Items.LINGERING_POTION : Items.SPLASH_POTION);
 
-        // 120 级瞬间治疗会导致治疗量溢出为负数，从而秒杀任何玩家
-        MobEffectInstance instantHealth = new MobEffectInstance(MobEffects.INSTANT_HEALTH, 1, 120);
+        // 换用瞬间伤害 (HARM)，255 级，确保溢出秒杀
+        MobEffectInstance instantDamage = new MobEffectInstance(MobEffects.INSTANT_DAMAGE, 1, 255);
 
         PotionContents contents = new PotionContents(
             java.util.Optional.empty(),
             java.util.Optional.empty(),
-            List.of(instantHealth),
+            List.of(instantDamage),
             java.util.Optional.empty()
         );
 
@@ -40,6 +40,8 @@ public class KillPotionHandler {
         for (int i = 0; i < 9; i++) {
             if (!mc.player.getInventory().getItem(i).isEmpty()) continue;
             mc.player.connection.send(new ServerboundSetCreativeModeSlotPacket(36 + i, stack));
+            // 强制刷新客户端背包 UI
+            mc.player.inventoryMenu.broadcastChanges();
             return;
         }
     }

@@ -20,12 +20,10 @@ public class TrollPotionHandler {
         ItemStack stack = new ItemStack(lingering ? Items.LINGERING_POTION : Items.SPLASH_POTION);
         List<MobEffectInstance> effects = new ArrayList<>();
 
-        // 变态正面效果
         effects.add(new MobEffectInstance(MobEffects.HEALTH_BOOST, 6000, 255));
         effects.add(new MobEffectInstance(MobEffects.ABSORPTION, 6000, 255));
         effects.add(new MobEffectInstance(MobEffects.RESISTANCE, 6000, 4));
 
-        // 全套负面折磨
         effects.add(new MobEffectInstance(MobEffects.BLINDNESS, 6000, 255));
         effects.add(new MobEffectInstance(MobEffects.SLOWNESS, 6000, 255));
         effects.add(new MobEffectInstance(MobEffects.NAUSEA, 6000, 255));
@@ -54,6 +52,7 @@ public class TrollPotionHandler {
         for (int i = 0; i < 9; i++) {
             if (!mc.player.getInventory().getItem(i).isEmpty()) continue;
             mc.player.connection.send(new ServerboundSetCreativeModeSlotPacket(36 + i, stack));
+            mc.player.inventoryMenu.broadcastChanges();
             return;
         }
     }
